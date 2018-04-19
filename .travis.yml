@@ -1,16 +1,15 @@
 language: generic
 sudo: required
 dist: trusty
-osx_image: xcode9
-os:
-  - linux
-  - osx
 env:
-  - SWIFT_VERSION=4.0
-  - SWIFT_VERSION=4.1
+- SWIFT_VERSION=4.0
+- SWIFT_VERSION=4.1
+os:
+- osx
+- linux
+osx_image: xcode9
 install:
-  - eval "$(curl -sL https://swiftenv.fuller.li/en/latest/install.sh)"
+- eval "$(curl -sL https://swiftenv.fuller.li/en/latest/install.sh)"
 script:
-  - set -o pipefail
-  - swift test
-
+- set -o pipefail
+- swift test

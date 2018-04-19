@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/kylef/Commander", from: "0.8.0"),
-        .package(url: "https://github.com/iainsmith/TravisClient", from: "0.2.0"),
+        .package(url: "https://github.com/iainsmith/TravisClient",  .exact(Version(0, 2, 1, prereleaseIdentifiers: ["beta"]))),
         .package(url: "https://github.com/jpsim/Yams.git", from: "0.7.0"),
     ],
     targets: [
@@ -24,7 +24,7 @@ let package = Package(
             dependencies: ["CILib"]),
         .target(
             name: "CILib",
-            dependencies: []),
+            dependencies: ["Yams", "TravisClient", "Commander"]),
         .testTarget(
             name: "CITests",
             dependencies: ["CILib"]),
