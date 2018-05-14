@@ -22,13 +22,12 @@ public func checkCIForCurrentCommit(using token: String) throws {
     _ = try shellOut(to: .gitCurrentCommitSha())
 
     let queue = DispatchQueue(label: "com.queue")
-    let semaphore = DispatchSemaphore(value: 0)
+    var semaphore = DispatchSemaphore(value: 0)
     let client = TravisClient(token: token, queue: queue)
 
     print("Checkin travis status for \(slug) \(branch)")
 
     var build: Build!
-
     client.branch(forRepo: slug, withIdentifier: branch) { result in
         let embed = result[\Branch.lastBuild]
         client.follow(embed: embed, completion: { buildResult in
@@ -57,7 +56,7 @@ public func checkCIForCurrentCommit(using token: String) throws {
 
     print(successMessage)
 
-    let sem = DispatchSemaphore(value: 0)
+    semaphore = DispatchSemaphore(value: 0)
     var message = ""
     client.jobs(forBuild: String(build.id)) { jobResult in
         guard let jobs = jobResult.object else { return }
@@ -68,9 +67,9 @@ public func checkCIForCurrentCommit(using token: String) throws {
         }
 
         message = messages.joined(separator: "\n")
-        sem.signal()
+        semaphore.signal()
     }
 
-    sem.standardWait()
+    semaphore.standardWait()
     print("\nJob(s):\n\(message)\n")
 }
