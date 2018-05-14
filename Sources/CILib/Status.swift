@@ -50,7 +50,6 @@ public func checkCIForCurrentCommit(using token: String) throws {
     \("State:".yellow)         \(build.state)
     \("Type:".yellow)          \(build.eventType)
     \("Branch:".yellow)        \(branchName)
-    \("Compare URL:".yellow)   https://github.com/iainsmith/swift-ci/compare/4a628a4b149e...d5f9e4515455
     \("Duration:".yellow)      \(formatter.string(from: build.duration))
     \("Started:".yellow)       \(formatter.string(from: build.startedAt))
     \("Finished:".yellow)      \(formatter.string(from: build.finishedAt))
