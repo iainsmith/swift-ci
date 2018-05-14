@@ -1,7 +1,7 @@
-import Foundation
-import Yams
-import TravisClient
 import Dispatch
+import Foundation
+import TravisClient
+import Yams
 
 enum ScriptError: Error {
     case noInput
@@ -22,7 +22,7 @@ public func saveYAMLToCurrentDirectory(apiToken: String) throws {
 
 let queue = DispatchQueue(label: "hello", attributes: .concurrent)
 
-public func enableRepository(apiToken: String) throws -> Bool{
+public func enableRepository(apiToken: String) throws -> Bool {
     let start = """
 
         Enter the github repository name:
@@ -38,12 +38,12 @@ public func enableRepository(apiToken: String) throws -> Bool{
     let client = TravisClient(token: apiToken, queue: queue)
     var activated: Bool = false
 
-    client.activateRepository(repoName) { (result) in
+    client.activateRepository(repoName) { result in
         activated = result.value?[\Repository.active] ?? false
         semaphore.signal()
     }
 
-    _ = semaphore.wait(wallTimeout: (.now() + .seconds(10)))
+    _ = semaphore.standardWait()
     let prefix = activated ? "Activated" : "Unable to activate"
     print("\(prefix) \(repoName)")
     return activated

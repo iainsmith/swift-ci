@@ -13,8 +13,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/kylef/Commander", from: "0.8.0"),
-        .package(url: "https://github.com/iainsmith/TravisClient",  .exact(Version(0, 2, 1, prereleaseIdentifiers: ["beta"]))),
+        .package(url: "https://github.com/iainsmith/TravisClient", .exact(Version(0, 2, 1, prereleaseIdentifiers: ["beta"]))),
         .package(url: "https://github.com/jpsim/Yams.git", from: "0.7.0"),
+        .package(url: "https://github.com/JohnSundell/ShellOut", from: "2.1.0"),
+        .package(url: "https://github.com/onevcat/Rainbow", from: "3.1.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -24,7 +26,7 @@ let package = Package(
             dependencies: ["CILib"]),
         .target(
             name: "CILib",
-            dependencies: ["Yams", "TravisClient", "Commander"]),
+            dependencies: ["Yams", "TravisClient", "Commander", "ShellOut", "Rainbow"]),
         .testTarget(
             name: "CITests",
             dependencies: ["CILib"]),

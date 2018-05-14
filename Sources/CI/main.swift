@@ -13,10 +13,14 @@ enum ScriptError: Error {
     case noToken
 }
 
-Group() {
+Group {
     let token = Option("token", default: "", flag: "t", description: "Travis api token")
 
-    $0.command("init", token, { (apiToken) in
+    $0.command("init", token, { apiToken in
         run(try saveYAMLToCurrentDirectory(apiToken: apiToken))
+    })
+
+    $0.command("status", token, { apiToken in
+        run(try checkCIForCurrentCommit(using: apiToken))
     })
 }.run()

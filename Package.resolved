@@ -11,12 +11,30 @@
         }
       },
       {
+        "package": "Rainbow",
+        "repositoryURL": "https://github.com/onevcat/Rainbow",
+        "state": {
+          "branch": null,
+          "revision": "7737750b25a9cb4174c7567bef11d175715a824f",
+          "version": "3.1.2"
+        }
+      },
+      {
         "package": "Result",
         "repositoryURL": "https://github.com/antitypical/Result",
         "state": {
           "branch": null,
           "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
           "version": "3.2.4"
+        }
+      },
+      {
+        "package": "ShellOut",
+        "repositoryURL": "https://github.com/JohnSundell/ShellOut",
+        "state": {
+          "branch": null,
+          "revision": "f1c253a34a40df4bfd268b09fdb101b059f6d52d",
+          "version": "2.1.0"
         }
       },
       {
